@@ -1,0 +1,3 @@
+outreach/*
+!outreach/.gitkeep
+.DS_Store
