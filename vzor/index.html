@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autoškola software – méně telefonátů, papírů a dohledávání plateb</title>
+  <meta name="description" content="Žáci, jízdy, platby i průkaz žáka v jedné aplikaci. Žáci si jízdy rezervují sami a platí QR kódem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body style="margin:0">
+<div class="lp" id="top">
+  <header class="lp-header">
+    <div class="lp-container lp-nav">
+      <a href="#top" class="lp-logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+          <rect x="1" y="1" width="26" height="26" rx="4" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M9 7v14h10" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        </svg>
+        Autoškola software
+      </a>
+      <button type="button" class="lp-menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="lp-nav-links">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path id="menu-icon" d="M3 6h14M3 10h14M3 14h14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span id="menu-label">Menu</span>
+      </button>
+      <nav id="lp-nav-links" class="lp-nav-links" aria-label="Sekce stránky">
+        <a href="#funkce">Funkce</a>
+        <a href="#prukaz">Průkaz žáka</a>
+        <a href="#cenik">Ceník</a>
+        <a href="#otazky">Otázky</a>
+        <a href="#" class="lp-nav-login">Přihlásit se</a>
+        <a href="#kontakt" class="lp-btn lp-btn--primary lp-btn--sm">Domluvit ukázku</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="lp-container lp-hero">
+      <div class="lp-hero-text">
+        <p class="lp-eyebrow">Pro majitele autoškol</p>
+        <h1>Méně telefonátů, papírů a&nbsp;dohledávání plateb.</h1>
+        <p class="lp-lead">Žáci, jízdy, platby i průkaz žáka v jedné aplikaci. Žáci si jízdy rezervují sami z volných termínů a platí QR kódem. Vy máte přehled a večer volno.</p>
+        <div class="lp-actions">
+          <a href="#kontakt" class="lp-btn lp-btn--primary">Domluvit ukázku</a>
+          <a href="#cenik" class="lp-btn lp-btn--outline">Zobrazit ceník</a>
+        </div>
+        <p class="lp-small">Veřejný ceník od 490 Kč měsíčně. Žáci a učitelé neplatí nic.</p>
+      </div>
+
+      <figure class="lp-panel lp-cal">
+        <div class="lp-panel-head"><strong>Dostupnost · Ing. Novák</strong><span>10.–14. 11.</span></div>
+        <div class="lp-scroll">
+          <div class="lp-cal-grid" aria-hidden="true">
+            <div class="lp-cal-day" style="grid-column:2">Po</div>
+            <div class="lp-cal-day" style="grid-column:3">Út</div>
+            <div class="lp-cal-day" style="grid-column:4">St</div>
+            <div class="lp-cal-day" style="grid-column:5">Čt</div>
+            <div class="lp-cal-day" style="grid-column:6">Pá</div>
+            <div class="lp-cal-time" style="grid-row:2">8:00</div>
+            <div class="lp-cal-time" style="grid-row:4">10:00</div>
+            <div class="lp-cal-time" style="grid-row:6">12:00</div>
+            <div class="lp-cal-time" style="grid-row:8">14:00</div>
+            <div class="lp-cal-event lp-cal-event--lesson" style="grid-column:2;grid-row:2 / span 2"><strong>Jízda</strong>K. Dvořáková</div>
+            <div class="lp-cal-event lp-cal-event--free" style="grid-column:2;grid-row:5 / span 4">Volno</div>
+            <div class="lp-cal-event lp-cal-event--lesson" style="grid-column:3;grid-row:3 / span 2"><strong>Jízda</strong>T. Malý</div>
+            <div class="lp-cal-event lp-cal-event--request" style="grid-column:3;grid-row:6 / span 2"><strong>Žádost</strong>J. Veselá</div>
+            <div class="lp-cal-event lp-cal-event--free" style="grid-column:4;grid-row:2 / span 6">Volno</div>
+            <div class="lp-cal-event lp-cal-event--lesson" style="grid-column:5;grid-row:2 / span 2"><strong>Jízda</strong>P. Svoboda</div>
+            <div class="lp-cal-event lp-cal-event--lesson" style="grid-column:5;grid-row:4 / span 2"><strong>Jízda</strong>K. Dvořáková</div>
+            <div class="lp-cal-event lp-cal-event--free" style="grid-column:6;grid-row:3 / span 4">Volno</div>
+          </div>
+        </div>
+        <figcaption class="lp-cal-legend">
+          <span><i class="lp-swatch lp-swatch--lesson"></i>Rezervovaná jízda</span>
+          <span><i class="lp-swatch lp-swatch--free"></i>Volný blok k rezervaci</span>
+          <span><i class="lp-swatch lp-swatch--request"></i>Žádost o jiný termín</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="lp-band">
+      <div class="lp-container lp-section">
+        <h2>Co se změní hned první měsíc</h2>
+        <div class="lp-compare">
+          <div class="lp-compare-row lp-compare-head">
+            <p class="lp-eyebrow">Dnes</p>
+            <p class="lp-eyebrow">S aplikací</p>
+          </div>
+          <div class="lp-compare-row">
+            <p class="lp-before">Žák volá, píše SMS a ptá se, kdy může jet. Termíny se domlouvají přes tři kanály.</p>
+            <p class="lp-after">Učitel vypíše volné bloky, žák si jízdu rezervuje sám. Jiný termín pošle jako žádost.</p>
+          </div>
+          <div class="lp-compare-row">
+            <p class="lp-before">Platby se dohledávají ve výpisu a v sešitě. Někdo jezdí, aniž by měl zaplaceno.</p>
+            <p class="lp-after">Žák platí QR kódem podle ceníku. Jízdy se odemknou až po zaplacení.</p>
+          </div>
+          <div class="lp-compare-row">
+            <p class="lp-before">Průkaz žáka je papírový, vyplňuje se ručně a musí se 5 let archivovat.</p>
+            <p class="lp-after">Elektronický průkaz se plní z odjetých jízd, nejde smazat a kdykoli ho vytisknete.</p>
+          </div>
+          <div class="lp-compare-row">
+            <p class="lp-before">STK služebního auta se hlídá v hlavě. Na propadlou se přijde pozdě.</p>
+            <p class="lp-after">Aplikace upozorní 30 dní předem a auto s propadlou STK k jízdě vůbec nepřiřadí.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="funkce" class="lp-container lp-section lp-features">
+      <h2>Celý výcvik žáka od přihlášky po zkoušku</h2>
+      <p class="lp-sub">Jedna aplikace pro kancelář, učitele i žáky. Běží v prohlížeči a na telefonu se dá přidat na plochu.</p>
+
+      <div class="lp-feature">
+        <div class="lp-feature-text">
+          <p class="lp-num">01</p>
+          <h3>Platby, které se samy hlídají</h3>
+          <p>Nastavíte ceník a žák dostane předpis k úhradě. Zaplatí QR kódem z bankovní aplikace, vy platbu schválíte jedním klikem. Dokud není zaplaceno, rezervace jízd zůstává zamčená.</p>
+          <ul class="lp-list">
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" class="lp-check"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2"/></svg>QR platba s předvyplněnou částkou a variabilním symbolem</li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" class="lp-check"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2"/></svg>Učitel zapíše hotovost, vedení ji schválí</li>
+            <li><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" class="lp-check"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2"/></svg>Přehled, kdo kolik dluží</li>
+          </ul>
+        </div>
+        <div class="lp-feature-visual">
+          <div class="lp-panel" aria-label="Ukázka: platby ke schválení" role="img">
+            <div class="lp-panel-head"><strong>Platby ke schválení</strong></div>
+            <div class="lp-pay-row">
+              <div><strong>Kateřina Dvořáková</strong><span>Kurz sk. B · QR platba</span></div>
+              <div class="lp-pay-right"><b>12 900 Kč</b><span class="lp-status lp-status--ok">Zaplaceno</span></div>
+            </div>
+            <div class="lp-pay-row">
+              <div><strong>Tomáš Malý</strong><span>Kondiční jízda · hotově u učitele</span></div>
+              <div class="lp-pay-right"><b>700 Kč</b><span class="lp-fake-btn">Schválit</span></div>
+            </div>
+            <div class="lp-pay-row">
+              <div><strong>Jana Veselá</strong><span>Kurz sk. B · splatnost 20. 11.</span></div>
+              <div class="lp-pay-right"><b>12 900 Kč</b><span class="lp-status lp-status--due">Nezaplaceno</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="prukaz" class="lp-feature lp-feature--reverse">
+        <div class="lp-feature-text">
+          <p class="lp-num">02</p>
+          <h3>Elektronický průkaz žáka</h3>
+          <p>Každá odjetá jízda se zapíše do průkazu. Záznamy nejdou smazat, opravy zůstávají dohledatelné a data se uchovávají 5 let. Před zkouškou průkaz jednoduše vytisknete.</p>
+          <p>Tisk a export průkazů fungují vždy, i když předplatné ukončíte.</p>
+        </div>
+        <div class="lp-feature-visual">
+          <div class="lp-panel lp-card-mock" aria-label="Ukázka: průkaz žáka" role="img">
+            <div class="lp-card-mock-head"><strong>Průkaz žáka · Kateřina Dvořáková</strong><span>sk. B</span></div>
+            <div class="lp-scroll">
+              <table class="lp-table">
+                <thead><tr><th>Datum</th><th>Výcvik</th><th>Hod.</th><th>Učitel</th></tr></thead>
+                <tbody>
+                  <tr><td>4. 11.</td><td>Jízda ve městě</td><td>2</td><td>Novák</td></tr>
+                  <tr><td>6. 11.</td><td>Jízda mimo obec</td><td>2</td><td>Novák</td></tr>
+                  <tr><td>10. 11.</td><td>Parkování</td><td>1</td><td>Horák</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="lp-card-mock-actions">
+              <span class="lp-fake-btn lp-fake-btn--outline">Vytisknout průkaz</span>
+              <span class="lp-fake-btn lp-fake-btn--quiet">Historie oprav</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-feature lp-feature--last">
+        <div class="lp-feature-text">
+          <p class="lp-num">03</p>
+          <h3>Rezervace jízd bez domlouvání</h3>
+          <p>Učitel si v týdenním kalendáři myší vyznačí časy, kdy může jezdit. Žák vidí jen volné termíny a rezervuje si je sám. Když mu žádný nesedí, pošle žádost a učitel ji potvrdí nebo předá kolegovi.</p>
+          <p>Vedení vidí kalendář všech učitelů najednou.</p>
+        </div>
+        <div class="lp-feature-visual">
+          <div class="lp-notes" aria-label="Ukázka: upozornění na rezervaci a žádost" role="img">
+            <div class="lp-panel lp-note">
+              <p class="lp-note-meta">Upozornění · před 2 min</p>
+              <p class="lp-note-title">Nová rezervace</p>
+              <p class="lp-note-text">Tomáš Malý, út 11. 11. v 9:00</p>
+            </div>
+            <div class="lp-panel lp-note">
+              <p class="lp-note-meta">Žádost · před 1 h</p>
+              <p class="lp-note-title">Jana Veselá chce jet</p>
+              <p class="lp-note-text">út 11. 11. ve 13:00</p>
+              <div class="lp-note-actions">
+                <span class="lp-fake-btn">Potvrdit</span>
+                <span class="lp-fake-btn lp-fake-btn--quiet">Předat</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-more">
+        <div class="lp-more-item"><h3>Zprávy se žáky</h3><p>Soukromý chat žák–učitel a skupina pro celou autoškolu. Žádné osobní WhatsAppy.</p></div>
+        <div class="lp-more-item"><h3>Notifikace na telefon</h3><p>Nová rezervace, žádost nebo zpráva přijde jako push notifikace.</p></div>
+        <div class="lp-more-item"><h3>Procvičování testů</h3><p>Otázky z oficiální banky MD ČR a cvičné testy. U žáka vidíte, v čem chybuje.</p></div>
+        <div class="lp-more-item"><h3>Online přihláška</h3><p>Přihláška z vašeho webu se rovnou založí jako nový žák.</p></div>
+        <div class="lp-more-item"><h3>Vozidla a STK</h3><p>Seznam aut s SPZ a hlídáním platnosti STK.</p></div>
+        <div class="lp-more-item"><h3>Náklady a finance</h3><p>Příjmy, náklady a výsledek za období. Export do CSV pro účetní.</p></div>
+      </div>
+    </section>
+
+    <section id="cenik" class="lp-dark">
+      <div class="lp-container lp-section">
+        <div class="lp-pricing-head">
+          <div>
+            <h2>Ceník bez telefonování</h2>
+            <p class="lp-sub">Platí jen autoškola. Jízdy, vozidla, zprávy a platby jsou bez omezení, plán se řídí jen velikostí týmu a počtem aktivních žáků.</p>
+          </div>
+          <p class="lp-small">Ceny bez DPH. Při roční platbě 2 měsíce zdarma.</p>
+        </div>
+        <div class="lp-plans">
+          <div class="lp-plan">
+            <div class="lp-plan-title"><h3>Start</h3></div>
+            <p class="lp-plan-for">Malá nebo začínající autoškola</p>
+            <p class="lp-plan-price"><b>490 Kč</b> / měsíc</p>
+            <p class="lp-plan-year">nebo 4 900 Kč ročně</p>
+            <ul>
+              <li>Až 3 lidé v týmu</li>
+              <li>Až 30 aktivních žáků</li>
+              <li>Rezervace, platby QR kódem, průkaz žáka</li>
+              <li>Vozidla a hlídání STK</li>
+            </ul>
+            <a href="#kontakt" class="lp-plan-link">Začít se Startem</a>
+          </div>
+          <div class="lp-plan lp-plan--featured">
+            <div class="lp-plan-title"><h3>Standard</h3><span>Vybírá většina autoškol</span></div>
+            <p class="lp-plan-for">Běžná autoškola s týmem</p>
+            <p class="lp-plan-price"><b>990 Kč</b> / měsíc</p>
+            <p class="lp-plan-year">nebo 9 900 Kč ročně</p>
+            <ul>
+              <li>Až 10 lidí v týmu</li>
+              <li>Až 120 aktivních žáků</li>
+              <li>Vše ze Startu</li>
+              <li>Zprávy, push notifikace, procvičování testů</li>
+              <li>Online přihláška z vašeho webu</li>
+            </ul>
+            <a href="#kontakt" class="lp-btn lp-btn--primary lp-btn--block">Domluvit ukázku</a>
+          </div>
+          <div class="lp-plan">
+            <div class="lp-plan-title"><h3>Pro</h3></div>
+            <p class="lp-plan-for">Větší škola, více poboček</p>
+            <p class="lp-plan-price"><b>1 990 Kč</b> / měsíc</p>
+            <p class="lp-plan-year">nebo 19 900 Kč ročně</p>
+            <ul>
+              <li>Až 30 lidí v týmu</li>
+              <li>Až 400 aktivních žáků</li>
+              <li>Vše ze Standardu</li>
+              <li>Finanční přehled a náklady</li>
+              <li>Export do CSV pro účetní</li>
+            </ul>
+            <a href="#kontakt" class="lp-plan-link">Začít s Pro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="otazky" class="lp-container lp-section lp-faq">
+      <h2>Na co se majitelé ptají</h2>
+      <div class="lp-faq-list">
+        <details open><summary>Co se stane s daty, když přestanu platit?</summary><p>Data vám nikdy nezablokujeme. Export a tisk průkazů žáků fungují v každém stavu účtu, protože je musíte uchovávat 5 let.</p></details>
+        <details><summary>Musíme něco instalovat?</summary><p>Ne. Aplikace běží v prohlížeči na počítači i telefonu. Žáci i učitelé si ji mohou přidat na plochu jako běžnou aplikaci.</p></details>
+        <details><summary>Jak dostaneme do aplikace stávající žáky?</summary><p>Založíte je a aplikace jim pošle e-mailovou pozvánku. S převodem většího počtu žáků vám pomůžeme.</p></details>
+        <details><summary>Uvidí jiné autoškoly naše data?</summary><p>Ne. Každá autoškola má data oddělená přímo v databázi a přílohy žáků leží v neveřejném úložišti.</p></details>
+        <details><summary>Platí něco žáci nebo učitelé?</summary><p>Ne. Platí jen autoškola podle zvoleného plánu.</p></details>
+      </div>
+    </section>
+
+    <section id="kontakt" class="lp-band">
+      <div class="lp-container lp-section lp-contact">
+        <div class="lp-contact-text">
+          <h2>Ukážeme vám to na vaší autoškole</h2>
+          <p class="lp-sub">Za 30 minut projdeme, jak by aplikace fungovala u vás. Ozveme se do jednoho pracovního dne.</p>
+          <p class="lp-phone" id="phone-block" hidden>Raději zavoláte?<br><a id="phone-link" href="#"></a></p>
+        </div>
+        <form class="lp-form" id="contact-form">
+          <label class="lp-field"><span>Jméno</span><input name="name" type="text" autocomplete="name" required></label>
+          <label class="lp-field"><span>Název autoškoly</span><input name="school" type="text" autocomplete="organization" required></label>
+          <label class="lp-field"><span>E-mail</span><input name="email" type="email" autocomplete="email" required></label>
+          <label class="lp-field"><span>Telefon</span><input name="phone" type="tel" autocomplete="tel"></label>
+          <label class="lp-field"><span>Počet učitelů</span><input name="instructors" type="number" min="1" inputmode="numeric"></label>
+          <div class="lp-form-submit"><button type="submit" class="lp-btn lp-btn--primary lp-btn--block">Chci ukázku</button></div>
+          <p class="lp-form-message" id="form-message" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lp-footer">
+    <div class="lp-container lp-footer-inner">
+      <span>© <span id="year"></span> Autoškola software<span id="operator"></span></span>
+      <div class="lp-footer-links"><a href="#kontakt">Kontakt</a><a href="#">Přihlášení</a></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Kontakty: doplnit. Prázdný telefon se nezobrazí; formulář otevře e-mail na CONTACT_EMAIL.
+  var CONTACT_EMAIL = '';
+  var CONTACT_PHONE = '';
+  var OPERATOR = '';
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  if (OPERATOR) document.getElementById('operator').textContent = ' · ' + OPERATOR;
+  if (CONTACT_PHONE) {
+    var phoneLink = document.getElementById('phone-link');
+    phoneLink.textContent = CONTACT_PHONE;
+    phoneLink.href = 'tel:' + CONTACT_PHONE.replace(/\s/g, '');
+    document.getElementById('phone-block').hidden = false;
+  }
+
+  var nav = document.getElementById('lp-nav-links');
+  var toggle = document.getElementById('menu-toggle');
+  function setMenu(open) {
+    nav.classList.toggle('lp-nav-links--open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    document.getElementById('menu-label').textContent = open ? 'Zavřít' : 'Menu';
+    document.getElementById('menu-icon').setAttribute('d', open ? 'M5 5l10 10M15 5L5 15' : 'M3 6h14M3 10h14M3 14h14');
+  }
+  toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('lp-nav-links--open')); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(e.currentTarget);
+    var msg = document.getElementById('form-message');
+    msg.hidden = false;
+    if (!CONTACT_EMAIL) { msg.textContent = 'Kontaktní e-mail zatím není nastavený.'; return; }
+    var body = ['Jméno: ' + (d.get('name') || ''), 'Autoškola: ' + (d.get('school') || ''), 'E-mail: ' + (d.get('email') || ''),
+      'Telefon: ' + (d.get('phone') || ''), 'Počet učitelů: ' + (d.get('instructors') || '')].join('\n');
+    var subject = 'Ukázka aplikace – ' + (d.get('school') || '');
+    window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    msg.textContent = 'Otevřeli jsme vám e-mail s vyplněnými údaji. Stačí ho odeslat.';
+  });
+</script>
+</body>
+</html>

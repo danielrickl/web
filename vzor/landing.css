@@ -1,0 +1,252 @@
+/* Zdroj: danielrickl/autoskolasoftware, src/pages/landing.css (beze změn, jen doplněna proměnná --font). */
+.lp { --font: 'Archivo', system-ui, 'Segoe UI', sans-serif; }
+
+/* Úvodní stránka pro majitele autoškol (LandingPage). Vše pod .lp.
+   Má vlastní světlou paletu nezávislou na tmavém režimu aplikace. */
+
+.lp {
+  --lp-bg: #f5f4ef;
+  --lp-surface: #fff;
+  --lp-ink: #15171a;
+  --lp-text: #3d4046;
+  --lp-muted: #55595f;
+  --lp-faint: #6a6e74;
+  --lp-line: #dad8d0;
+  --lp-line-soft: #eceae3;
+  --lp-accent: #0e5a47;
+  --lp-accent-hover: #0a4537;
+  --lp-accent-soft: #e3eee9;
+  --lp-request: #f6e7b8;
+  --lp-due: #8a4b00;
+  --lp-dashed: #9ea29c;
+  --lp-dark: #15171a;
+  --lp-dark-line: #3a3d42;
+  --lp-dark-muted: #c9cbce;
+  --lp-dark-faint: #a9acb0;
+
+  color-scheme: light;
+  min-height: 100vh;
+  background: var(--lp-bg);
+  color: var(--lp-ink);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.lp *,
+.lp *::before,
+.lp *::after { box-sizing: border-box; }
+.lp a { color: inherit; }
+.lp a:hover { color: var(--lp-accent); }
+.lp h1, .lp h2, .lp h3, .lp p { margin: 0; color: inherit; }
+.lp h1, .lp h2 { letter-spacing: -0.02em; font-weight: 700; }
+.lp h2 { font-size: clamp(30px, 3.4vw, 42px); line-height: 1.12; max-width: 760px; }
+.lp :focus-visible { outline: 2px solid var(--lp-accent); outline-offset: 2px; }
+
+.lp-container { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+.lp-section { padding-top: 96px; padding-bottom: 96px; }
+.lp-band { background: var(--lp-surface); border-top: 1px solid var(--lp-line); border-bottom: 1px solid var(--lp-line); }
+.lp-sub { margin-top: 16px !important; max-width: 640px; color: var(--lp-text); font-size: 19px; }
+.lp-small { font-size: 15px; color: var(--lp-muted); }
+.lp-eyebrow { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lp-muted); }
+.lp-scroll { overflow-x: auto; }
+
+/* Tlačítka */
+.lp-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 0 24px; border-radius: 6px; border: 1.5px solid transparent;
+  font: inherit; font-weight: 600; text-decoration: none; cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.lp-btn--primary { background: var(--lp-accent); color: #fff !important; }
+.lp-btn--primary:hover { background: var(--lp-accent-hover); }
+.lp-btn--outline { border-color: var(--lp-ink); color: var(--lp-ink); }
+.lp-btn--outline:hover { background: var(--lp-ink); color: #fff !important; }
+.lp-btn--sm { min-height: 44px; padding: 0 18px; font-size: 15px; }
+.lp-btn--block { width: 100%; min-height: 48px; }
+
+/* Hlavička */
+.lp-header { position: sticky; top: 0; z-index: 50; background: var(--lp-bg); border-bottom: 1px solid var(--lp-line); }
+/* Kotvy (#funkce, #cenik…) se nesmí schovat pod přilepenou hlavičku. */
+.lp [id] { scroll-margin-top: 72px; }
+.lp-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+.lp-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; font-size: 19px; letter-spacing: -0.01em; }
+.lp-nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 28px; font-size: 15px; }
+.lp-nav-links a:not(.lp-btn) { text-decoration: none; }
+.lp-nav-login { color: var(--lp-muted) !important; }
+
+/* Tlačítko rozbalovací lišty – jen na mobilu */
+.lp-menu-toggle {
+  display: none; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  border: 1.5px solid var(--lp-ink); border-radius: 6px; background: transparent; color: var(--lp-ink);
+  font: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+}
+@media (hover: hover) { .lp-menu-toggle:hover { background: var(--lp-ink); color: #fff; } }
+
+@media (max-width: 800px) {
+  .lp-menu-toggle { display: inline-flex; }
+  .lp-nav-links {
+    display: none; flex-basis: 100%; flex-direction: column; align-items: stretch; gap: 0;
+    border-top: 1px solid var(--lp-line); font-size: 17px;
+  }
+  .lp-nav-links--open { display: flex; max-height: calc(100svh - 74px); overflow-y: auto; }
+  .lp-nav-links a:not(.lp-btn) { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--lp-line-soft); }
+  .lp-nav-links .lp-btn { margin: 16px 0 4px; min-height: 52px; }
+}
+
+/* Úvod */
+.lp-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 56px; padding-top: 88px; padding-bottom: 72px; }
+.lp-hero-text { flex: 1 1 440px; min-width: 0; }
+.lp-hero h1 { margin-top: 20px; font-size: clamp(40px, 5.2vw, 64px); line-height: 1.04; letter-spacing: -0.025em; }
+.lp-lead { margin-top: 24px !important; max-width: 540px; font-size: 20px; color: var(--lp-text); }
+.lp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 36px 0 20px; }
+
+/* Panely s ukázkami aplikace */
+.lp-panel { background: var(--lp-surface); border: 1px solid var(--lp-line); border-radius: 10px; overflow: hidden; }
+.lp-panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--lp-line-soft); font-size: 14px; }
+.lp-panel-head strong { font-weight: 600; }
+.lp-panel-head span { color: var(--lp-muted); }
+
+.lp-cal { flex: 1 1 520px; min-width: 0; margin: 0; box-shadow: 0 1px 0 var(--lp-line), 0 24px 48px -28px rgba(21, 23, 26, .35); }
+.lp-cal-grid {
+  min-width: 460px; display: grid;
+  grid-template-columns: 52px repeat(5, minmax(0, 1fr));
+  grid-template-rows: 34px repeat(8, 38px);
+  padding: 0 12px 12px 0; font-size: 12px; line-height: 1.35;
+}
+.lp-cal-day { grid-row: 1; align-self: center; text-align: center; font-weight: 600; color: var(--lp-muted); }
+.lp-cal-time { grid-column: 1; text-align: right; padding-right: 8px; color: var(--lp-faint); }
+.lp-cal-event { margin: 2px; padding: 5px 7px; border-radius: 4px; overflow: hidden; }
+.lp-cal-event strong { display: block; font-weight: 600; }
+.lp-cal-event--lesson { background: var(--lp-accent-soft); border-left: 3px solid var(--lp-accent); }
+.lp-cal-event--free { border: 1.5px dashed var(--lp-dashed); color: var(--lp-text); }
+.lp-cal-event--request { background: var(--lp-request); }
+.lp-cal-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 14px 20px; border-top: 1px solid var(--lp-line-soft); font-size: 13px; color: var(--lp-text); }
+.lp-cal-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.lp-swatch { width: 12px; height: 12px; display: inline-block; }
+.lp-swatch--lesson { background: var(--lp-accent-soft); border-left: 3px solid var(--lp-accent); }
+.lp-swatch--free { border: 1.5px dashed var(--lp-dashed); }
+.lp-swatch--request { background: var(--lp-request); }
+
+.lp-pay-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--lp-line-soft); font-size: 15px; }
+.lp-pay-row:last-child { border-bottom: 0; }
+.lp-pay-row strong { display: block; font-weight: 600; }
+.lp-pay-row span { color: var(--lp-muted); font-size: 13px; }
+.lp-pay-right { display: flex; align-items: center; gap: 14px; }
+.lp-pay-right b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.lp .lp-status { font-weight: 600; }
+.lp .lp-status--ok { color: var(--lp-accent); }
+.lp .lp-status--due { color: var(--lp-due); }
+
+/* Tlačítka uvnitř ukázek jsou jen obrázek, ne ovládací prvek */
+.lp .lp-fake-btn {
+  display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 6px;
+  background: var(--lp-accent); color: #fff; font-size: 13px; font-weight: 600;
+  border: 1.5px solid transparent;
+}
+.lp .lp-fake-btn--outline { background: var(--lp-surface); color: var(--lp-ink); border-color: var(--lp-ink); min-height: 44px; font-size: 14px; }
+.lp .lp-fake-btn--quiet { background: var(--lp-surface); color: var(--lp-ink); border-color: var(--lp-line); }
+
+.lp-card-mock { padding: 24px; }
+.lp-card-mock-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px; }
+.lp-card-mock-head strong { font-size: 18px; }
+.lp-card-mock-head span { font-size: 13px; color: var(--lp-muted); }
+.lp-table { width: 100%; min-width: 380px; margin-top: 16px; border-collapse: collapse; font-size: 14px; }
+.lp-table th { padding: 8px; text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--lp-muted); border-bottom: 1px solid var(--lp-ink); }
+.lp-table td { padding: 10px 8px; border-bottom: 1px solid var(--lp-line-soft); }
+.lp-table th:first-child, .lp-table td:first-child { padding-left: 0; }
+.lp-card-mock-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+.lp-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.lp-note { padding: 20px; }
+.lp-note-meta { font-size: 13px; color: var(--lp-muted); }
+.lp-note-title { margin-top: 8px !important; font-weight: 600; }
+.lp-note-text { margin-top: 4px !important; font-size: 15px; color: var(--lp-text); }
+.lp-note-actions { display: flex; gap: 8px; margin-top: 14px; }
+
+/* Dnes / s aplikací */
+.lp-compare { margin-top: 48px; border-top: 2px solid var(--lp-ink); border-bottom: 1px solid var(--lp-line); }
+.lp-compare-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px 32px; padding: 24px 0; border-top: 1px solid var(--lp-line); }
+.lp-compare-head { padding: 20px 0; border-top: 0; }
+.lp-before { color: var(--lp-muted); }
+.lp-after { font-weight: 500; }
+
+/* Funkce */
+.lp-features { padding-bottom: 96px; }
+.lp-feature { display: flex; flex-wrap: wrap; align-items: center; gap: 48px; padding: 64px 0; border-bottom: 1px solid var(--lp-line); }
+.lp-feature--reverse { flex-direction: row-reverse; }
+.lp-feature--last { border-bottom: 0; }
+.lp-feature-text { flex: 1 1 380px; min-width: 0; }
+.lp-feature-text h3 { margin-top: 8px; font-size: 28px; letter-spacing: -0.015em; }
+.lp-feature-text p:not(.lp-num) { margin-top: 14px; color: var(--lp-text); }
+.lp-feature-visual { flex: 1 1 460px; min-width: 0; }
+.lp-num { font-size: 15px; font-weight: 600; color: var(--lp-muted); }
+.lp-list { margin: 20px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; }
+.lp-list li { display: flex; gap: 10px; }
+.lp-check { flex: none; margin-top: 3px; color: var(--lp-accent); }
+
+.lp-more { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); border-top: 2px solid var(--lp-ink); }
+.lp-more-item { padding: 28px 28px 28px 0; border-bottom: 1px solid var(--lp-line); }
+.lp-more-item h3 { font-size: 18px; font-weight: 600; }
+.lp-more-item p { margin-top: 8px; font-size: 16px; color: var(--lp-text); }
+
+/* Ceník */
+.lp-dark { background: var(--lp-dark); color: var(--lp-bg); }
+.lp-dark .lp-sub, .lp-dark .lp-small { color: var(--lp-dark-muted); }
+.lp-pricing-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.lp-plans { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.lp-plan { display: flex; flex-direction: column; padding: 32px; border: 1px solid var(--lp-dark-line); border-radius: 10px; }
+.lp-plan-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.lp-plan-title h3 { font-size: 20px; font-weight: 600; }
+.lp-plan-title span { font-size: 13px; font-weight: 600; color: var(--lp-muted); }
+.lp-plan-for { margin-top: 6px !important; font-size: 15px; color: var(--lp-dark-muted); }
+.lp-plan-price { margin-top: 28px !important; color: var(--lp-dark-muted); }
+.lp-plan-price b { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; color: var(--lp-bg); }
+.lp-plan-year { margin-top: 4px !important; font-size: 14px; color: var(--lp-dark-faint); }
+.lp-plan ul { margin: 28px 0 28px; padding: 20px 0 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; border-top: 1px solid var(--lp-dark-line); }
+.lp-plan > a { margin-top: auto; }
+.lp-plan-link { font-weight: 600; color: var(--lp-bg) !important; }
+.lp-plan-link:hover { color: #fff !important; }
+.lp-plan--featured { background: var(--lp-bg); color: var(--lp-ink); border-color: var(--lp-bg); }
+.lp-plan--featured .lp-plan-for,
+.lp-plan--featured .lp-plan-price,
+.lp-plan--featured .lp-plan-year { color: var(--lp-muted); }
+.lp-plan--featured .lp-plan-price b { color: var(--lp-ink); }
+.lp-plan--featured ul { border-top-color: var(--lp-line); }
+
+/* Otázky */
+.lp-faq { display: flex; flex-wrap: wrap; gap: 48px; }
+.lp-faq h2 { flex: 1 1 300px; }
+.lp-faq-list { flex: 2 1 560px; min-width: 0; border-top: 2px solid var(--lp-ink); }
+.lp-faq details { padding: 22px 0; border-bottom: 1px solid var(--lp-line); }
+.lp-faq summary { cursor: pointer; font-size: 18px; font-weight: 600; min-height: 28px; }
+.lp-faq details p { margin-top: 12px; color: var(--lp-text); }
+
+/* Kontakt */
+.lp-contact { display: flex; flex-wrap: wrap; gap: 56px; }
+.lp-contact-text { flex: 1 1 380px; min-width: 0; }
+.lp-phone { margin-top: 32px !important; font-size: 16px; color: var(--lp-text); }
+.lp-phone a { font-size: 20px; font-weight: 600; }
+.lp-form { flex: 1 1 460px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; align-content: start; }
+.lp-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; }
+.lp-field input {
+  min-height: 48px; padding: 0 14px; border: 1.5px solid #b9b7af; border-radius: 6px;
+  background: var(--lp-surface); color: var(--lp-ink); font: inherit; font-size: 16px; font-weight: 400;
+}
+.lp-field input:focus { outline: 2px solid var(--lp-accent); outline-offset: 1px; border-color: var(--lp-accent); }
+.lp-form-submit { display: flex; align-items: flex-end; }
+.lp-form-message { grid-column: 1 / -1; font-size: 15px; color: var(--lp-text); }
+
+/* Patička */
+.lp-footer { border-top: 1px solid var(--lp-line); }
+.lp-footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding-top: 32px; padding-bottom: 32px; font-size: 14px; color: var(--lp-muted); }
+.lp-footer-links { display: flex; flex-wrap: wrap; gap: 24px; }
+.lp-footer-links a { color: var(--lp-muted); }
+
+@media (max-width: 640px) {
+  .lp-section { padding-top: 64px; padding-bottom: 64px; }
+  .lp-hero { padding-top: 48px; gap: 40px; }
+  .lp-feature { padding: 48px 0; gap: 32px; }
+  .lp-plan { padding: 24px; }
+  .lp-compare-head { display: none; }
+}
