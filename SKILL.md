@@ -41,7 +41,7 @@ Sdílený záznam kandidáta (`prospects.json`, pole objektů):
 1. **Agent 1** (sekvenčně, vše ostatní čeká na jeho výstup).
 2. **Agenti 2 a 3 spusť paralelně** v jedné dávce (nezávisí na sobě, oba čtou jen `prospects.json`). U více než 3 kandidátů můžeš agenty 2 a 3 rozdělit po kandidátech (jeden agent = jeden nebo dva kandidáti), aby běželi rychleji.
 3. **Agent 4** až po dokončení agentů 2 a 3.
-4. Na konci shrň výsledky uživateli (viz Po dokončení agentů).
+4. Na konci pošli uživateli screenshoty dem do náhledu a shrň výsledky (viz Po dokončení agentů).
 
 Sub-agenty spouštěj na pozadí a po jejich dokončení výsledky převezmi ze souborů, ne z jejich textových odpovědí.
 
@@ -93,12 +93,14 @@ Pravidla e-mailu:
 - **Kontrola konzistence**: fakta v e-mailu (služby, nedostatky webu, název firmy) odpovídají tomu, co demo skutečně řeší; demo obsahuje označení ukázky a noindex; e-mail nic neslibuje, co demo nemá; v demu nezůstaly nevyplněné značky ani vymyšlené údaje. Nesrovnalosti oprav v e-mailu nebo demu a zapiš do přehledu.
 - **Propojení**: pokud existuje URL pro demo (viz níže), dosaď ji za `{{DEMO_URL}}` v e-mailu. Pokud ne, přepiš větu na "ukázku posílám v příloze" a vytvoř ZIP `final/<slug>/demo-<slug>.zip` s demem.
 - Výsledek ulož jako `final/<slug>/email.md` (hotový text) a `final/<slug>/demo/` (kopie dema).
+- **Screenshoty dema**: pro každé demo vytvoř `final/<slug>/nahled-desktop.png` (šířka 1440 px, celá stránka) a `final/<slug>/nahled-mobil.png` (šířka 390 px, celá stránka). Použij headless Chromium (Playwright v Pythonu nebo Node; když chybí, nainstaluj `playwright` a `playwright install chromium`) a otevři `file://.../index.html`. Po pořízení se na snímky podívej (Read) a ověř, že se stránka vykreslila celá, bez rozbitého layoutu, přetékání a prázdných míst; chyby oprav v demu a snímky udělej znovu. Když screenshot nejde pořídit, napiš to do `_prehled.md` a pokračuj bez nich.
 - `final/_prehled.md`: tabulka firma, město, skóre, hlavní nedostatky, kontakt, cesta k e-mailu, cesta k demu, co je ověřené a co zástupné, co musí uživatel doplnit před odesláním.
 
 Agent 4 sám **nic neodesílá, nic nenasazuje a nevytváří koncepty v Gmailu**. Tyto kroky řeší hlavní vlákno až po potvrzení.
 
 ## Po dokončení agentů (hlavní vlákno)
 
+- **Pošli screenshoty do náhledu**: pro každého kandidáta pošli `nahled-desktop.png` a `nahled-mobil.png` nástrojem SendUserFile (`display: "render"`, `status: "normal"`, popisek s názvem firmy a městem, např. "Demo: Instalatér Novák, Teplice (desktop)"). Posílej průběžně po kandidátech, ne až na konci. Soubory pošli jako samostatné snímky, ne ZIP.
 - Předej uživateli stručný přehled (tabulka) z `final/_prehled.md`, s upozorněním, co je třeba doplnit (`[DOPLNIT]`).
 - Nabídni (nic nedělej bez souhlasu): a) nasazení dem na Vercel jako preview (ne produkce) a dosazení odkazů do e-mailů; b) koncepty e-mailů v Gmailu (`create_draft`), **nikdy `send_message`**; c) zápis do Google Sheets pro sledování oslovení (stav, datum, odpověď).
 - Když kandidát odpoví "ne" nebo "nepište", zapiš to a už ho neoslovuj.

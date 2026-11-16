@@ -9,7 +9,7 @@ Claude skill, který pomocí čtyř sub-agentů najde firmy se špatným webem, 
 3. **Tvůrce landing pages** postaví demo podle vzoru (`demos/`).
 4. **Spojovač** zkontroluje konzistenci, propojí e-mail s demem a připraví hotové balíčky (`final/`).
 
-Agenti 2 a 3 běží paralelně. Nic se neodesílá ani nezveřejňuje bez potvrzení.
+Agenti 2 a 3 běží paralelně. Agent 4 pořídí screenshoty dem (desktop + mobil) a hlavní vlákno je pošle do náhledu. Nic se neodesílá ani nezveřejňuje bez potvrzení.
 
 ## Struktura
 
