@@ -1,113 +1,115 @@
 ---
 name: web-outreach-demo
-description: Pomocí 4 sub-agentů najde firmy se špatným webem, napíše personalizované e-maily, vytvoří demo landing pages podle vzoru a spojí je do hotových balíčků. Pro hledání klientů na tvorbu webu.
+description: Uses 4 sub-agents to find businesses with a poor website, write personalised e-mails, build demo landing pages based on a template and combine everything into ready-to-send packages. For finding web design clients.
 ---
 
-# Web outreach + demo landing page (4 sub-agenti)
+# Web outreach + demo landing page (4 sub-agents)
 
-Pro freelance webdesignéra: najdi potenciální klienty se slabým webem, napiš jim osobní e-mail a připrav uživateli na míru ukázkovou landing page podle jeho vzoru. Práci dělají čtyři sub-agenti (nástroj Agent), každý má jednu roli a předávají si data přes soubory.
+For a freelance web designer: find potential clients with a weak website, write each of them a personal e-mail and prepare a tailored demo landing page based on the user's own template. The work is done by four sub-agents (the Agent tool); each has a single role and they hand data to each other through files.
 
-Vše píšeš česky, vykáš, tón je věcný a lidský (ne reklamní). **Nikdy nic neodesílej a nezveřejňuj bez potvrzení uživatele.**
+**Language of the outputs**: the prospects are Czech businesses, so everything they will see (e-mails, demo pages) is written in **Czech**, using the formal "vy" form, in a factual and human tone (not salesy). Notes and reports for the user may be in the user's language.
 
-## Vstupy (zeptej se jen na to, co chybí)
+**Never send or publish anything without the user's confirmation.**
 
-- **Obor a lokalita**: výchozí řemeslníci a malé firmy v Ústeckém kraji (Ústí nad Labem, Děčín, Teplice, Chomutov, Most, Litoměřice).
-- **Počet kandidátů**: výchozí 5.
-- **Složka se vzorem**: hledej složku s názvem obsahujícím `vzor`, `template` nebo `sablona` (do hloubky 2). Pokud ji nenajdeš nebo je prázdná, zeptej se na cestu. Bez vzoru spusť jen agenty 1 a 2.
-- **Údaje odesílatele** (značka, telefon, e-mail, web, IČO, adresa): z toho, co uživatel zadá, nebo z jeho paměti. Chybějící údaje nevymýšlej, nech `[DOPLNIT]`.
+## Inputs (ask only for what is missing)
 
-## Pracovní složka a předávání dat
+- **Industry and location**: default is tradespeople and small businesses in the Ústí nad Labem Region (Ústí nad Labem, Děčín, Teplice, Chomutov, Most, Litoměřice).
+- **Number of candidates**: default 5.
+- **Template folder**: look for a folder whose name contains `vzor`, `template` or `sablona` (up to depth 2). If you cannot find it or it is empty, ask for the path. Without a template, run only agents 1 and 2.
+- **Sender details** (brand, phone, e-mail, website, company ID (IČO), address): from what the user provides or from their memory. Never invent missing details; leave `[FILL IN]` instead.
 
-Vytvoř `outreach/<YYYY-MM-DD>-<obor>-<mesto>/` s podsložkami `emails/`, `demos/`, `final/`. Agenti spolu nesdílí kontext, proto jim v promptu vždy předej: cestu k pracovní složce, cestu ke vzoru, údaje odesílatele a přesnou specifikaci jejich vstupu a výstupu níže. Každý prompt musí být samostatný a srozumitelný bez znalosti konverzace.
+## Working folder and data hand-off
 
-Sdílený záznam kandidáta (`prospects.json`, pole objektů):
+Create `outreach/<YYYY-MM-DD>-<industry>-<city>/` with the subfolders `emails/`, `demos/` and `final/`. Agents do not share context, so in each prompt always pass: the path to the working folder, the path to the template, the sender details and the exact specification of their input and output below. Every prompt must be self-contained and understandable without knowledge of the conversation.
+
+Shared candidate record (`prospects.json`, an array of objects):
 ```json
 {
   "slug": "instalater-novak-teplice",
-  "firma": "",
-  "mesto": "",
+  "company": "",
+  "city": "",
   "url": "",
-  "kontakt": {"email": "", "telefon": "", "zdroj_kontaktu": ""},
-  "co_dela": "souhrn 1-3 věty ověřený z jejich webu",
-  "problemy": ["konkrétní ověřený nedostatek", "..."],
-  "skore": 4,
-  "overena_fakta": ["služby", "oblast působnosti", "otevírací doba"],
-  "neznama_data": ["ceny", "reference", "fotky"]
+  "contact": {"email": "", "phone": "", "contact_source": ""},
+  "what_they_do": "1-3 sentence summary verified from their website",
+  "issues": ["specific verified shortcoming", "..."],
+  "score": 4,
+  "verified_facts": ["services", "service area", "opening hours"],
+  "unknown_data": ["prices", "references", "photos"]
 }
 ```
 
-## Postup a pořadí
+## Procedure and order
 
-1. **Agent 1** (sekvenčně, vše ostatní čeká na jeho výstup).
-2. **Agenti 2 a 3 spusť paralelně** v jedné dávce (nezávisí na sobě, oba čtou jen `prospects.json`). U více než 3 kandidátů můžeš agenty 2 a 3 rozdělit po kandidátech (jeden agent = jeden nebo dva kandidáti), aby běželi rychleji.
-3. **Agent 4** až po dokončení agentů 2 a 3.
-4. Na konci pošli uživateli screenshoty dem do náhledu a shrň výsledky (viz Po dokončení agentů).
+1. **Agent 1** (sequential; everything else waits for its output).
+2. **Run agents 2 and 3 in parallel** in a single batch (they do not depend on each other; both read only `prospects.json`). With more than 3 candidates you may split agents 2 and 3 by candidate (one agent = one or two candidates) so they run faster.
+3. **Agent 4** only after agents 2 and 3 have finished.
+4. At the end, send the user the demo screenshots as previews and summarise the results (see After the agents finish).
 
-Sub-agenty spouštěj na pozadí a po jejich dokončení výsledky převezmi ze souborů, ne z jejich textových odpovědí.
+Run sub-agents in the background and, once they finish, take their results from the files, not from their text replies.
 
-## Agent 1: Průzkumník (hledá weby a vyplňuje údaje)
+## Agent 1: Researcher (finds websites and fills in the data)
 
-**Vstup**: obor, lokalita, počet kandidátů. **Výstup**: `prospects.json`.
+**Input**: industry, location, number of candidates. **Output**: `prospects.json`.
 
-Úkol agenta:
-- WebSearch kombinací `<obor> <město>` (i Firmy.cz, Mapy.cz). Hledej cca 2× víc kandidátů, než je potřeba, a pak vyřaď.
-- Preferuj firmy, které web **mají**, ale slabý. Přeskoč weby jen na Facebooku, velké firmy a řetězce, a firmy s evidentně moderním webem.
-- Každý web načti (WebFetch) a vyhodnoť. Kontroly: chybí HTTPS nebo vypršelý certifikát; není responzivní (chybí viewport, fixní šířka, mrňavá písma, ověř ve zdroji stránky); zastaralý vzhled (tabulky na layout, frames, Flash, rok v patičce 2012 apod.); chybí jasná výzva k akci (telefon, poptávkový formulář, kontakt nad ohybem); chybí reference, ceník či rozsah služeb, oblast působnosti, otevírací doba; pomalé/těžké obrázky, rozbité odkazy, chybí meta title/description.
-- Skóre 1-5 (5 = nejhorší web, nejlepší kandidát). Do výběru jen skóre ≥ 4 s alespoň 3 konkrétními, ověřitelnými nedostatky.
-- **Kontakt** jen veřejně uvedený firemní (web, Firmy.cz, rejstřík). Neodhaduj adresy a nehledej soukromé e-maily. Pokud e-mail není, ponech prázdný a uveď telefon.
-- Do `co_dela` souhrn toho, co firma dělá, jen z toho, co je na jejich webu. Do `neznama_data` vypiš, co se zjistit nepodařilo.
-- Žádná tvrzení bez opory: u každého problému musí agent vědět, kde ho viděl.
+The agent's task:
+- WebSearch with combinations of `<industry> <city>` (also Firmy.cz, Mapy.cz). Look for about twice as many candidates as needed, then filter.
+- Prefer businesses that **have** a website, but a weak one. Skip businesses that are only on Facebook, large companies and chains, and businesses with an obviously modern website.
+- Load each website (WebFetch) and evaluate it. Checks: missing HTTPS or an expired certificate; not responsive (missing viewport, fixed width, tiny fonts; verify in the page source); outdated look (layout tables, frames, Flash, a year such as 2012 in the footer, etc.); no clear call to action (phone, enquiry form, contact above the fold); missing references, price list or scope of services, service area, opening hours; slow/heavy images, broken links, missing meta title/description.
+- Score 1-5 (5 = worst website, best candidate). Select only score ≥ 4 with at least 3 specific, verifiable shortcomings.
+- **Contact**: only a publicly listed business contact (website, Firmy.cz, business register). Do not guess addresses and do not look for private e-mails. If there is no e-mail, leave it empty and fill in the phone.
+- `what_they_do`: a summary of what the business does, based only on what is on their website. `unknown_data`: list what could not be found out.
+- No unsupported claims: for every issue the agent must know where it saw it.
 
-## Agent 2: Copywriter (píše e-maily)
+## Agent 2: Copywriter (writes the e-mails)
 
-**Vstup**: `prospects.json`, údaje odesílatele. **Výstup**: `emails/<slug>.md` pro každého kandidáta s e-mailem.
+**Input**: `prospects.json`, sender details. **Output**: `emails/<slug>.md` for every candidate with an e-mail address.
 
-Obsah každého souboru: řádek `Předmět:`, text e-mailu, na konci poznámka `Odkaz na demo: {{DEMO_URL}}` (zástupná značka, vyplní ji Agent 4).
+Content of each file: a `Předmět:` (Subject) line, the e-mail body, and at the end the note `Odkaz na demo: {{DEMO_URL}}` (a placeholder that Agent 4 fills in). The e-mail itself is in Czech.
 
-Pravidla e-mailu:
-- Max ~120-150 slov. Struktura: 1) jedna věta, co jsi na jejich práci/firmě viděl a ocenil (jen ověřitelné); 2) 2-3 konkrétní postřehy k webu z pole `problemy`, laskavě, bez shazování; 3) "Připravil jsem si nezávaznou ukázku, jak by to mohlo vypadat: {{DEMO_URL}}"; 4) jedna jasná otázka/výzva (krátký hovor nebo odpověď e-mailem); 5) podpis.
-- Předmět konkrétní a nepřehnaný, např. "Nápad na web pro <firma> - připravil jsem ukázku".
-- Žádné vymyšlené statistiky, žádný falešný nátlak, žádné "získáte X zákazníků".
-- **Právní minimum** (zákon č. 480/2004 Sb.): jasně uvedený odesílatel (značka, IČO, adresa), zjevné obchodní sdělení a snadný způsob odmítnutí (např. "Pokud nemáte zájem, stačí odpovědět 'ne' a už vás nebudu kontaktovat"). Žádné hromadné rozesílání, každý e-mail je individuální a první oslovení jednorázové. Upozorni uživatele, že to nenahrazuje právníka.
-- Kandidáty bez e-mailu přeskoč a zapiš do `emails/_bez-emailu.md` (jen jména a telefon).
+E-mail rules:
+- Max ~120-150 words. Structure: 1) one sentence on what you noticed and appreciated about their work/business (verifiable facts only); 2) 2-3 specific observations about the website from the `issues` field, kindly, without belittling; 3) "Připravil jsem si nezávaznou ukázku, jak by to mohlo vypadat: {{DEMO_URL}}" ("I have prepared a no-obligation demo of how it could look"); 4) one clear question/call to action (a short call or a reply by e-mail); 5) signature.
+- A specific, non-exaggerated subject, e.g. "Nápad na web pro <company> - připravil jsem ukázku" ("An idea for <company>'s website - I have prepared a demo").
+- No invented statistics, no false urgency, no "you will get X customers".
+- **Legal minimum** (Czech Act No. 480/2004 Coll. on certain information society services): a clearly identified sender (brand, company ID, address), an obvious commercial communication, and an easy way to opt out (e.g. "Pokud nemáte zájem, stačí odpovědět 'ne' a už vás nebudu kontaktovat." – "If you are not interested, just reply 'no' and I will not contact you again."). No bulk mailing; every e-mail is individual and the first contact is one-off. Remind the user that this does not replace a lawyer.
+- Skip candidates without an e-mail address and write them to `emails/_no-email.md` (names and phone only).
 
-## Agent 3: Tvůrce landing pages (staví demo na míru)
+## Agent 3: Landing page builder (builds a tailored demo)
 
-**Vstup**: `prospects.json`, cesta ke vzoru. **Výstup**: `demos/<slug>/index.html` (a související soubory).
+**Input**: `prospects.json`, path to the template. **Output**: `demos/<slug>/index.html` (and related files).
 
-Úkol agenta:
-- Načti celý vzor (HTML/CSS/JS, sekce, styl, fonty) a drž se jeho designu a konvencí. Pokud obsahuje zástupné značky (`{{FIRMA}}`, `[NAZEV]` apod.), vyplň je, jinak přepiš texty ve stejné struktuře.
-- Zkopíruj vzor do `demos/<slug>/` (**vzor nikdy needituj přímo**).
-- Obsah jen z `co_dela` a `overena_fakta`: název, služby, oblast působnosti, kontakty, otevírací doba. Co je v `neznama_data` (ceny, reference, recenze, fotky, certifikace, roky praxe) **nevymýšlej**: použij jasně označený zástupný prvek nebo sekci vynech.
-- Žádné vymyšlené recenze, loga klientů, počty zakázek ani jiná tvrzení vydávaná za fakta. Cizí fotky a loga nekopíruj, použij neutrální zástupné obrázky ze vzoru.
-- Základy SEO a výkonu: title, description, sémantické nadpisy, lazy loading, responzivita, kontrast, viditelné tlačítko volat/poptat, funkční `tel:` a `mailto:`.
-- **Označení dema**: v patičce nebo diskrétním pruhu "Ukázkový návrh vytvořil <značka uživatele>, nejedná se o oficiální web firmy <firma>" a `<meta name="robots" content="noindex,nofollow">`. Demo nikdy nevydávej za skutečný web firmy.
-- Zkontroluj výsledek (validní HTML, mobilní zobrazení, funkční odkazy). Pokud je dostupný prohlížeč, otevři a ověř vizuálně.
-- Vedle `index.html` ulož `demos/<slug>/_pouzite-udaje.md`: co je ověřené a co je zástupné.
+The agent's task:
+- Read the whole template (HTML/CSS/JS, sections, style, fonts) and stick to its design and conventions. If it contains placeholders (`{{COMPANY}}`, `[NAME]`, etc.), fill them in; otherwise rewrite the texts within the same structure.
+- Copy the template into `demos/<slug>/` (**never edit the template directly**).
+- Content only from `what_they_do` and `verified_facts`: name, services, service area, contacts, opening hours. Whatever is in `unknown_data` (prices, references, reviews, photos, certifications, years of experience) **must not be invented**: use a clearly marked placeholder or leave the section out.
+- No invented reviews, client logos, project counts or other claims presented as facts. Do not copy third-party photos or logos; use the neutral placeholder images from the template.
+- SEO and performance basics: title, description, semantic headings, lazy loading, responsiveness, contrast, a visible call/enquiry button, working `tel:` and `mailto:` links.
+- **Demo label**: in the footer or a discreet banner, "Ukázkový návrh vytvořil <user's brand>, nejedná se o oficiální web firmy <company>" ("Demo design created by <user's brand>; this is not the official website of <company>") and `<meta name="robots" content="noindex,nofollow">`. Never present the demo as the business's real website.
+- Check the result (valid HTML, mobile view, working links). If a browser is available, open it and check it visually.
+- Next to `index.html`, save `demos/<slug>/_data-used.md`: what is verified and what is a placeholder.
 
-## Agent 4: Spojovač (propojí e-mail s landing pagí)
+## Agent 4: Assembler (links the e-mail with the landing page)
 
-**Vstup**: `prospects.json`, `emails/`, `demos/`. **Výstup**: `final/<slug>/` + `final/_prehled.md`.
+**Input**: `prospects.json`, `emails/`, `demos/`. **Output**: `final/<slug>/` + `final/_overview.md`.
 
-Úkol agenta, pro každého kandidáta, který má e-mail i demo:
-- **Kontrola konzistence**: fakta v e-mailu (služby, nedostatky webu, název firmy) odpovídají tomu, co demo skutečně řeší; demo obsahuje označení ukázky a noindex; e-mail nic neslibuje, co demo nemá; v demu nezůstaly nevyplněné značky ani vymyšlené údaje. Nesrovnalosti oprav v e-mailu nebo demu a zapiš do přehledu.
-- **Propojení**: pokud existuje URL pro demo (viz níže), dosaď ji za `{{DEMO_URL}}` v e-mailu. Pokud ne, přepiš větu na "ukázku posílám v příloze" a vytvoř ZIP `final/<slug>/demo-<slug>.zip` s demem.
-- Výsledek ulož jako `final/<slug>/email.md` (hotový text) a `final/<slug>/demo/` (kopie dema).
-- **Screenshoty dema**: pro každé demo vytvoř `final/<slug>/nahled-desktop.png` (šířka 1440 px, celá stránka) a `final/<slug>/nahled-mobil.png` (šířka 390 px, celá stránka). Použij headless Chromium (Playwright v Pythonu nebo Node; když chybí, nainstaluj `playwright` a `playwright install chromium`) a otevři `file://.../index.html`. Po pořízení se na snímky podívej (Read) a ověř, že se stránka vykreslila celá, bez rozbitého layoutu, přetékání a prázdných míst; chyby oprav v demu a snímky udělej znovu. Když screenshot nejde pořídit, napiš to do `_prehled.md` a pokračuj bez nich.
-- `final/_prehled.md`: tabulka firma, město, skóre, hlavní nedostatky, kontakt, cesta k e-mailu, cesta k demu, co je ověřené a co zástupné, co musí uživatel doplnit před odesláním.
+The agent's task, for every candidate that has both an e-mail and a demo:
+- **Consistency check**: facts in the e-mail (services, website shortcomings, company name) match what the demo actually addresses; the demo contains the demo label and noindex; the e-mail promises nothing the demo does not have; no unfilled placeholders or invented data are left in the demo. Fix discrepancies in the e-mail or the demo and record them in the overview.
+- **Linking**: if a URL for the demo exists (see below), substitute it for `{{DEMO_URL}}` in the e-mail. If not, rewrite the sentence to "ukázku posílám v příloze" ("I am attaching the demo") and create a ZIP `final/<slug>/demo-<slug>.zip` with the demo.
+- Save the result as `final/<slug>/email.md` (final text) and `final/<slug>/demo/` (a copy of the demo).
+- **Demo screenshots**: for every demo create `final/<slug>/preview-desktop.png` (width 1440 px, full page) and `final/<slug>/preview-mobile.png` (width 390 px, full page). Use headless Chromium (Playwright in Python or Node; if it is missing, install `playwright` and run `playwright install chromium`) and open `file://.../index.html`. After taking them, look at the screenshots (Read) and verify that the whole page rendered, without a broken layout, overflow or empty areas; fix any errors in the demo and retake the screenshots. If a screenshot cannot be taken, note it in `_overview.md` and continue without it.
+- `final/_overview.md`: a table with company, city, score, main shortcomings, contact, path to the e-mail, path to the demo, what is verified and what is a placeholder, and what the user must fill in before sending.
 
-Agent 4 sám **nic neodesílá, nic nenasazuje a nevytváří koncepty v Gmailu**. Tyto kroky řeší hlavní vlákno až po potvrzení.
+Agent 4 itself **sends nothing, deploys nothing and does not create Gmail drafts**. The main thread handles those steps only after confirmation.
 
-## Po dokončení agentů (hlavní vlákno)
+## After the agents finish (main thread)
 
-- **Pošli screenshoty do náhledu**: pro každého kandidáta pošli `nahled-desktop.png` a `nahled-mobil.png` nástrojem SendUserFile (`display: "render"`, `status: "normal"`, popisek s názvem firmy a městem, např. "Demo: Instalatér Novák, Teplice (desktop)"). Posílej průběžně po kandidátech, ne až na konci. Soubory pošli jako samostatné snímky, ne ZIP.
-- Předej uživateli stručný přehled (tabulka) z `final/_prehled.md`, s upozorněním, co je třeba doplnit (`[DOPLNIT]`).
-- Nabídni (nic nedělej bez souhlasu): a) nasazení dem na Vercel jako preview (ne produkce) a dosazení odkazů do e-mailů; b) koncepty e-mailů v Gmailu (`create_draft`), **nikdy `send_message`**; c) zápis do Google Sheets pro sledování oslovení (stav, datum, odpověď).
-- Když kandidát odpoví "ne" nebo "nepište", zapiš to a už ho neoslovuj.
+- **Send the screenshots as previews**: for every candidate send `preview-desktop.png` and `preview-mobile.png` with the SendUserFile tool (`display: "render"`, `status: "normal"`, a caption with the company name and city, e.g. "Demo: Instalatér Novák, Teplice (desktop)"). Send them progressively per candidate, not all at the end. Send the files as individual images, not as a ZIP.
+- Give the user a short overview (table) from `final/_overview.md`, pointing out what still needs to be filled in (`[FILL IN]`).
+- Offer (do nothing without consent): a) deploying the demos to Vercel as a preview (not production) and inserting the links into the e-mails; b) Gmail drafts of the e-mails (`create_draft`), **never `send_message`**; c) logging to Google Sheets to track outreach (status, date, reply).
+- When a candidate replies "no" or "do not write", record it and never contact them again.
 
-## Pravidla
+## Rules
 
-- Žádné odeslání ani zveřejnění bez potvrzení uživatele.
-- U každého tvrzení o webu kandidáta musí být ověřitelný zdroj.
-- Nepřehánět kritiku, cílem je nabídnout pomoc, ne zahanbit.
-- Osobní údaje: jen veřejné firemní kontakty a minimum dat (název, e-mail, web, poznámky k webu).
+- Nothing is sent or published without the user's confirmation.
+- Every claim about a candidate's website must have a verifiable source.
+- Do not overdo the criticism; the goal is to offer help, not to shame.
+- Personal data: only public business contacts and the minimum of data (name, e-mail, website, notes on the website).
