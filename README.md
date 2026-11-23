@@ -23,7 +23,7 @@ Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes des
 .
 ├── SKILL.md        # skill definition (instructions for Claude)
 ├── README.md       # this documentation
-├── vzor/           # your landing page template (currently empty, see vzor/README.md)
+├── template/       # your landing page template (currently empty, see template/README.md)
 │   └── README.md
 └── outreach/       # outputs of individual runs (git-ignored, they contain contacts)
     └── .gitkeep
@@ -32,7 +32,7 @@ Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes des
 ## Installation
 
 1. Add `SKILL.md` to Claude as a skill named `web-outreach-demo` (in Claude Code, e.g. copy it to `.claude/skills/web-outreach-demo/SKILL.md` in your project or to `~/.claude/skills/web-outreach-demo/SKILL.md`).
-2. Put your landing page template into `vzor/` – see [`vzor/README.md`](vzor/README.md) for requirements and recommended conventions.
+2. Put your landing page template into `template/` – see [`template/README.md`](template/README.md) for requirements and recommended conventions.
 3. Make sure Claude has access to web search and web fetch (Agent 1) and, for screenshots, to Playwright with Chromium (Agent 4 installs it if missing).
 
 ## Usage
@@ -61,7 +61,7 @@ The skill asks only for what is missing:
 Each run creates `outreach/<YYYY-MM-DD>-<industry>-<city>/`:
 
 ```
-outreach/2026-11-23-truhlari-teplice/
+outreach/2026-11-23-carpenters-teplice/
 ├── prospects.json             # candidates (Agent 1)
 ├── emails/
 │   ├── <slug>.md              # e-mail drafts with {{DEMO_URL}} (Agent 2)
@@ -84,7 +84,7 @@ outreach/2026-11-23-truhlari-teplice/
 
 ```json
 {
-  "slug": "instalater-novak-teplice",
+  "slug": "plumber-novak-teplice",
   "company": "Instalatér Novák",
   "city": "Teplice",
   "url": "http://example.cz",
@@ -113,7 +113,7 @@ The e-mails are commercial communications under Czech Act No. 480/2004 Coll. on 
 
 ## Troubleshooting
 
-- **No demos are created** – the template folder is missing or empty; add `vzor/index.html` or give the skill the template path.
+- **No demos are created** – the template folder is missing or empty; add `template/index.html` or give the skill the template path.
 - **No screenshots** – Playwright/Chromium could not be installed or started; the reason is noted in `final/_overview.md` and the demos can be opened manually from `final/<slug>/demo/index.html`.
 - **A candidate has no e-mail** – it is listed in `emails/_no-email.md` with a phone number for a call instead.
 - **`[FILL IN]` in the outputs** – a sender detail was not provided; fill it in before sending.

@@ -25,7 +25,7 @@ Create `outreach/<YYYY-MM-DD>-<industry>-<city>/` with the subfolders `emails/`,
 Shared candidate record (`prospects.json`, an array of objects):
 ```json
 {
-  "slug": "instalater-novak-teplice",
+  "slug": "plumber-novak-teplice",
   "company": "",
   "city": "",
   "url": "",

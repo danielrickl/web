@@ -1,4 +1,4 @@
-# Template folder (`vzor/`)
+# Template folder (`template/`)
 
 This folder holds the landing page template that Agent 3 of the `web-outreach-demo` skill uses to build a tailored demo for each prospect. It is currently **empty**: add your own template before running the full pipeline. Without a template the skill runs only the Researcher and the Copywriter (agents 1 and 2) and no demos are created.
 
@@ -29,7 +29,7 @@ These are not required, but they make the generated demos more consistent:
 
 ## Checklist before a run
 
-- [ ] `vzor/index.html` exists and opens correctly in a browser from the file system
-- [ ] all referenced files are inside `vzor/` and use relative paths
+- [ ] `template/index.html` exists and opens correctly in a browser from the file system
+- [ ] all referenced files are inside `template/` and use relative paths
 - [ ] no third-party content (photos, logos, texts) you do not have the rights to
 - [ ] the layout works at 390 px width without horizontal scrolling
