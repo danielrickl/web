@@ -1,5 +1,22 @@
 # web-outreach-demo
 
+**Stop pitching. Start showing.**
+
+Cold e-mails saying "your website could be better" get ignored. An e-mail with
+the prospect's own new website gets a reply.
+
+This Claude skill runs a 4-agent pipeline that does the boring part of finding
+clients for you:
+
+- 🔍 **Finds** local businesses whose websites are stuck in 2012
+- ✍️ **Writes** a short, personal e-mail for each, based on verified facts only
+- 🎨 **Builds** a demo landing page in your own design
+- 📦 **Packages** everything, with desktop and mobile screenshots, for you to review
+
+You stay in control: nothing is sent or published until you say so.
+
+## About
+
 A Claude skill that uses four sub-agents to find businesses with a poor website, write each of them a personalised e-mail and build a demo landing page based on your own template. It is meant for freelance web designers looking for clients.
 
 The prospects are Czech businesses (by default tradespeople and small businesses in the Ústí nad Labem Region), so the generated e-mails and demo pages are in Czech. This documentation and the skill definition are in English.
