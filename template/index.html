@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{COMPANY}} – {{TRADE}} in {{CITY}}</title>
+  <meta name="description" content="{{COMPANY}}: {{TRADE}} in {{CITY}} and the surrounding area. {{SHORT_PITCH}}">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- DEMO LABEL: keep it. Agent 3 fills in both names. -->
+  <div class="demo-banner" role="note">
+    Demo design by {{SENDER_BRAND}} – not the official website of {{COMPANY}}.
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="{{COMPANY}} – home">
+        <span class="logo__mark" aria-hidden="true">{{INITIALS}}</span>
+        <span>{{COMPANY}}</span>
+      </a>
+      <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#area">Area</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn--primary" href="tel:{{PHONE_RAW}}">Call {{PHONE}}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <span class="eyebrow">{{TRADE}} · {{CITY}}</span>
+          <h1>{{HEADLINE}}</h1>
+          <p class="hero__lead">{{SHORT_PITCH}}</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="tel:{{PHONE_RAW}}">Call {{PHONE}}</a>
+            <a class="btn btn--ghost" href="#contact">Send an enquiry</a>
+          </div>
+          <!-- Only verified facts, e.g. service area, opening hours, free quote. Remove items you cannot verify. -->
+          <ul class="hero__facts">
+            <li>{{FACT_1}}</li>
+            <li>{{FACT_2}}</li>
+            <li>{{FACT_3}}</li>
+          </ul>
+        </div>
+        <!-- PLACEHOLDER IMAGE: replace only with a photo the client provides. -->
+        <div class="placeholder" role="img" aria-label="Placeholder for a photo of the client's work">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>
+            </svg>
+            Photo of your work
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES: one card per verified service; add or remove cards as needed. -->
+    <section class="section" id="services">
+      <div class="container">
+        <span class="eyebrow">Services</span>
+        <h2>What we do</h2>
+        <p class="section__intro">{{SERVICES_INTRO}}</p>
+        <div class="grid grid--3">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🔧</div>
+            <h3>{{SERVICE_1}}</h3>
+            <p>{{SERVICE_1_TEXT}}</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">🛠️</div>
+            <h3>{{SERVICE_2}}</h3>
+            <p>{{SERVICE_2_TEXT}}</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">📐</div>
+            <h3>{{SERVICE_3}}</h3>
+            <p>{{SERVICE_3_TEXT}}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS: generic, safe to keep; adjust wording to the trade. -->
+    <section class="section section--soft" id="process">
+      <div class="container">
+        <span class="eyebrow">How it works</span>
+        <h2>From the first call to a finished job</h2>
+        <p class="section__intro">Simple and transparent, with no surprises along the way.</p>
+        <ol class="steps">
+          <li><h3>Get in touch</h3><p>Call us or send a short enquiry describing what you need.</p></li>
+          <li><h3>Visit and quote</h3><p>We look at the job and agree on the scope, price and date.</p></li>
+          <li><h3>The work</h3><p>We do the job carefully and leave the place clean.</p></li>
+          <li><h3>Handover</h3><p>We go through the result together and you only pay for what was agreed.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- AREA + HOURS: remove the table if opening hours are unknown. -->
+    <section class="section" id="area">
+      <div class="container area">
+        <div>
+          <span class="eyebrow">Service area</span>
+          <h2>Where we work</h2>
+          <p class="section__intro">Based in {{CITY}}, working across the surrounding area.</p>
+          <ul class="tags">
+            <li>{{CITY}}</li>
+            <li>{{AREA_1}}</li>
+            <li>{{AREA_2}}</li>
+            <li>{{AREA_3}}</li>
+          </ul>
+        </div>
+        <table class="hours">
+          <caption class="eyebrow" style="caption-side: top; text-align: left;">Opening hours</caption>
+          <tbody>
+            <tr><th scope="row">Monday – Friday</th><td>{{HOURS_WEEKDAYS}}</td></tr>
+            <tr><th scope="row">Saturday</th><td>{{HOURS_SATURDAY}}</td></tr>
+            <tr><th scope="row">Sunday</th><td>{{HOURS_SUNDAY}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ: answers must be generic or verified; never invent prices or guarantees. -->
+    <section class="section section--soft" id="faq">
+      <div class="container">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked questions</h2>
+        <div class="faq">
+          <details>
+            <summary>How quickly can you come?</summary>
+            <p>Call us and we will agree on a date that suits you.</p>
+          </details>
+          <details>
+            <summary>How much will it cost?</summary>
+            <p>Every job is different. After a short visit or a few photos we will give you a quote before any work starts.</p>
+          </details>
+          <details>
+            <summary>Do you also work outside {{CITY}}?</summary>
+            <p>Yes, we cover {{CITY}} and the surrounding area. Just ask.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT: the form opens the visitor's e-mail client, no back end needed. -->
+    <section class="section contact" id="contact">
+      <div class="container contact__inner">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2>Tell us what you need</h2>
+          <p class="contact__lead">The fastest way is a phone call. You can also send a short enquiry and we will get back to you.</p>
+          <ul class="contact__list">
+            <li><span>Phone</span><a href="tel:{{PHONE_RAW}}">{{PHONE}}</a></li>
+            <li><span>E-mail</span><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+            <li><span>Address</span>{{ADDRESS}}</li>
+          </ul>
+        </div>
+        <form class="form" id="enquiry">
+          <label>Name
+            <input name="name" autocomplete="name" required>
+          </label>
+          <label>Phone or e-mail
+            <input name="reply" autocomplete="tel" required>
+          </label>
+          <label>What do you need?
+            <textarea name="message" required></textarea>
+          </label>
+          <button class="btn btn--primary" type="submit">Send enquiry</button>
+          <small>The enquiry opens in your e-mail app, ready to send.</small>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© {{YEAR}} {{COMPANY}}</span>
+      <span>{{ADDRESS}}</span>
+      <p class="footer__demo">
+        Demo design by {{SENDER_BRAND}}. This is not the official website of {{COMPANY}}; all content is illustrative.
+      </p>
+    </div>
+  </footer>
+
+  <a class="btn btn--primary call-fab" href="tel:{{PHONE_RAW}}">Call {{PHONE}}</a>
+
+  <script>
+    // Mobile menu
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    nav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', false); }
+    });
+
+    // Enquiry form via mailto: (works as a static page)
+    document.getElementById('enquiry').addEventListener('submit', e => {
+      e.preventDefault();
+      const f = e.target;
+      const body = `${f.message.value}\n\n${f.name.value}\n${f.reply.value}`;
+      location.href = 'mailto:{{EMAIL}}?subject=' + encodeURIComponent('Enquiry from the website') +
+        '&body=' + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>

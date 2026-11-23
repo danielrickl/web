@@ -78,7 +78,7 @@ E-mail rules:
 **Input**: `prospects.json`, path to the template. **Output**: `demos/<slug>/index.html` (and related files).
 
 The agent's task:
-- Read the whole template (HTML/CSS/JS, sections, style, fonts) and stick to its design and conventions. If it contains placeholders (`{{COMPANY}}`, `[NAME]`, etc.), fill them in; otherwise rewrite the texts within the same structure.
+- Read the whole template (HTML/CSS/JS, sections, style, fonts) and stick to its design and conventions. If it contains placeholders (`{{COMPANY}}`, `[NAME]`, etc.), fill them in; otherwise rewrite the texts within the same structure. Translate any fixed texts of the template (navigation, headings, FAQ) into Czech.
 - Copy the template into `demos/<slug>/` (**never edit the template directly**).
 - Content only from `what_they_do` and `verified_facts`: name, services, service area, contacts, opening hours. Whatever is in `unknown_data` (prices, references, reviews, photos, certifications, years of experience) **must not be invented**: use a clearly marked placeholder or leave the section out.
 - No invented reviews, client logos, project counts or other claims presented as facts. Do not copy third-party photos or logos; use the neutral placeholder images from the template.

@@ -40,7 +40,10 @@ Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes des
 .
 ├── SKILL.md        # skill definition (instructions for Claude)
 ├── README.md       # this documentation
-├── template/       # your landing page template (currently empty, see template/README.md)
+├── LICENSE         # MIT
+├── template/       # sample landing page template – replace with your own design
+│   ├── index.html
+│   ├── style.css
 │   └── README.md
 └── outreach/       # outputs of individual runs (git-ignored, they contain contacts)
     └── .gitkeep
@@ -49,7 +52,7 @@ Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes des
 ## Installation
 
 1. Add `SKILL.md` to Claude as a skill named `web-outreach-demo` (in Claude Code, e.g. copy it to `.claude/skills/web-outreach-demo/SKILL.md` in your project or to `~/.claude/skills/web-outreach-demo/SKILL.md`).
-2. Put your landing page template into `template/` – see [`template/README.md`](template/README.md) for requirements and recommended conventions.
+2. Use the included sample template, or replace it with your own design in `template/` – see [`template/README.md`](template/README.md) for requirements and recommended conventions.
 3. Make sure Claude has access to web search and web fetch (Agent 1) and, for screenshots, to Playwright with Chromium (Agent 4 installs it if missing).
 
 ## Usage
@@ -130,7 +133,11 @@ The e-mails are commercial communications under Czech Act No. 480/2004 Coll. on 
 
 ## Troubleshooting
 
-- **No demos are created** – the template folder is missing or empty; add `template/index.html` or give the skill the template path.
+- **No demos are created** – the template folder is missing or has no `index.html`; add `template/index.html` or give the skill the template path.
 - **No screenshots** – Playwright/Chromium could not be installed or started; the reason is noted in `final/_overview.md` and the demos can be opened manually from `final/<slug>/demo/index.html`.
 - **A candidate has no e-mail** – it is listed in `emails/_no-email.md` with a phone number for a call instead.
 - **`[FILL IN]` in the outputs** – a sender detail was not provided; fill it in before sending.
+
+## License
+
+[MIT](LICENSE) – free to use, modify and share, including commercially.

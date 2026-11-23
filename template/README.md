@@ -1,6 +1,30 @@
 # Template folder (`template/`)
 
-This folder holds the landing page template that Agent 3 of the `web-outreach-demo` skill uses to build a tailored demo for each prospect. It is currently **empty**: add your own template before running the full pipeline. Without a template the skill runs only the Researcher and the Copywriter (agents 1 and 2) and no demos are created.
+This folder holds the landing page template that Agent 3 of the `web-outreach-demo` skill uses to build a tailored demo for each prospect. It ships with a **sample template** for a local tradesperson, so the skill works out of the box. Replace it with your own design to make the demos look like your work. Without any template the skill runs only the Researcher and the Copywriter (agents 1 and 2) and no demos are created.
+
+## The included sample
+
+- `index.html` – one static page: demo banner, header with a call button, hero, services, how it works, service area with opening hours, FAQ, contact (phone, e-mail, `mailto:` form), footer with the demo label, and a sticky call button on mobile
+- `style.css` – responsive styles; the palette is in CSS variables at the top of the file (`--brand`, `--brand-dark`, `--accent`, …)
+- No images, fonts or external requests: the hero photo is a CSS placeholder that is replaced only with a photo the client provides
+
+Texts to fill in are marked as `{{PLACEHOLDERS}}`:
+
+| Placeholder | Meaning |
+|-------------|---------|
+| `{{LANG}}` | page language code, e.g. `cs`, `en` |
+| `{{COMPANY}}`, `{{INITIALS}}` | business name and its initials for the logo |
+| `{{TRADE}}`, `{{CITY}}` | what they do and where they are based |
+| `{{HEADLINE}}`, `{{SHORT_PITCH}}` | hero heading and one-sentence summary |
+| `{{FACT_1}}`–`{{FACT_3}}` | short verified facts under the hero buttons |
+| `{{SERVICES_INTRO}}`, `{{SERVICE_n}}`, `{{SERVICE_n_TEXT}}` | services (add or remove cards as needed) |
+| `{{AREA_1}}`–`{{AREA_3}}` | towns in the service area |
+| `{{HOURS_WEEKDAYS}}`, `{{HOURS_SATURDAY}}`, `{{HOURS_SUNDAY}}` | opening hours (remove the table if unknown) |
+| `{{PHONE}}`, `{{PHONE_RAW}}`, `{{EMAIL}}`, `{{ADDRESS}}` | contact details; `PHONE_RAW` without spaces for `tel:` links |
+| `{{SENDER_BRAND}}` | your brand, used in the demo label |
+| `{{YEAR}}` | current year |
+
+The sample's fixed texts (navigation, process steps, FAQ) are in English; Agent 3 translates them into the language of the demo.
 
 The skill finds the template by looking for a folder whose name contains `vzor`, `template` or `sablona` (up to two levels deep). If you keep it elsewhere, give the skill the path when you start a run.
 
