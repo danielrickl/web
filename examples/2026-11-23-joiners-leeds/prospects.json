@@ -1,0 +1,48 @@
+[
+  {
+    "slug": "oakline-joinery-leeds",
+    "company": "Oakline Joinery",
+    "city": "Leeds",
+    "country": "UK",
+    "url": "http://oakline-joinery.example",
+    "language": "en",
+    "contact": {
+      "email": "info@oakline-joinery.example",
+      "phone": "0113 496 0742",
+      "contact_source": "Contact page of their website; listed as a limited company in the footer"
+    },
+    "what_they_do": "Joinery workshop in Leeds making fitted kitchens, built-in wardrobes and staircases, working across West Yorkshire.",
+    "issues": [
+      "No HTTPS: the site loads only over http:// and browsers show 'Not secure'",
+      "Not mobile-friendly: no viewport meta tag and a fixed 960 px layout (page source)",
+      "Phone number only on the Contact page, not on the home page",
+      "No meta description; the page title is just 'Home'",
+      "Footer says '© 2013'"
+    ],
+    "score": 5,
+    "verified_facts": ["services: fitted kitchens, built-in wardrobes, staircases", "service area: Leeds, Bradford, Wakefield, Harrogate", "opening hours: Mon-Fri 8:00-17:00, Sat by appointment", "phone and e-mail", "address: Unit 4, Example Works, Leeds"],
+    "unknown_data": ["prices", "customer reviews", "photos of their work", "years in business"]
+  },
+  {
+    "slug": "hartley-carpentry-leeds",
+    "company": "Hartley Carpentry",
+    "city": "Leeds",
+    "country": "UK",
+    "url": "http://hartley-carpentry.example",
+    "language": "en",
+    "contact": {
+      "email": "",
+      "phone": "0113 496 0915",
+      "contact_source": "Home page of their website"
+    },
+    "what_they_do": "Sole trader carpenter in Leeds doing doors, skirting, flooring and small repairs.",
+    "issues": [
+      "Layout built with tables, not responsive",
+      "No list of services beyond a single paragraph",
+      "No enquiry form or e-mail address"
+    ],
+    "score": 4,
+    "verified_facts": ["services: doors, skirting, flooring, repairs", "phone"],
+    "unknown_data": ["e-mail", "service area", "opening hours", "prices", "photos"]
+  }
+]

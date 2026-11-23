@@ -1,5 +1,9 @@
 # web-outreach-demo
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Claude Code skill](https://img.shields.io/badge/Claude_Code-skill-d97757.svg)](https://claude.com/claude-code)
+[![Any country, any language](https://img.shields.io/badge/works-any_country_%C2%B7_any_language-1f6f5c.svg)](#about)
+
 **Stop pitching. Start showing.**
 
 Cold e-mails saying "your website could be better" get ignored. An e-mail with
@@ -14,6 +18,10 @@ clients for you:
 - 📦 **Packages** everything, with desktop and mobile screenshots, for you to review
 
 You stay in control: nothing is sent or published until you say so.
+
+![A demo landing page generated for a fictional joinery, on desktop and mobile](docs/screenshot.png)
+
+*A demo generated for a fictional business. See the [full example run](examples/README.md): the prospects found, the e-mail, the demo and the overview.*
 
 ## About
 
@@ -41,19 +49,39 @@ Before the agents start, the skill checks which e-mail marketing rules apply in 
 ├── SKILL.md        # skill definition (instructions for Claude)
 ├── README.md       # this documentation
 ├── LICENSE         # MIT
+├── CONTRIBUTING.md # how to help
 ├── template/       # sample landing page template – replace with your own design
 │   ├── index.html
 │   ├── style.css
 │   └── README.md
+├── examples/       # a complete fictional run: prospects, e-mail, demo, screenshots
+├── docs/           # images for this README
 └── outreach/       # outputs of individual runs (git-ignored, they contain contacts)
     └── .gitkeep
 ```
 
 ## Installation
 
-1. Add `SKILL.md` to Claude as a skill named `web-outreach-demo` (in Claude Code, e.g. copy it to `.claude/skills/web-outreach-demo/SKILL.md` in your project or to `~/.claude/skills/web-outreach-demo/SKILL.md`).
-2. Use the included sample template, or replace it with your own design in `template/` – see [`template/README.md`](template/README.md) for requirements and recommended conventions.
-3. Make sure Claude has access to web search and web fetch (Agent 1) and, for screenshots, to Playwright with Chromium (Agent 4 installs it if missing).
+One command, for all your projects (Claude Code):
+
+```bash
+git clone https://github.com/danielrickl/web ~/.claude/skills/web-outreach-demo
+```
+
+Or for a single project only:
+
+```bash
+git clone https://github.com/danielrickl/web .claude/skills/web-outreach-demo
+```
+
+Update later with `git -C ~/.claude/skills/web-outreach-demo pull`.
+
+Requirements:
+
+- Claude with web search and web fetch (Agent 1)
+- Playwright with Chromium for the screenshots (Agent 4 installs it if missing; without it you get the demos but no previews)
+
+**Your own design:** the skill uses the bundled sample in [`template/`](template/README.md) unless your project has its own folder named `template`, `vzor` or `sablona` with an `index.html`. Put your design there and every demo will look like your work.
 
 ## Usage
 
@@ -76,7 +104,7 @@ The skill asks only for what is missing:
 | Number of candidates | 5 |
 | Outreach language | main business language of the location (or of the prospect's website in multilingual countries) |
 | Form of address | the polite business form customary in that language |
-| Template folder | first folder containing `template`, `vzor` or `sablona` (depth ≤ 2) |
+| Template folder | your project's `template`/`vzor`/`sablona` folder (depth ≤ 2), otherwise the bundled sample |
 | Sender details | brand, phone, e-mail, website, company registration number, postal address – missing items are left as `[FILL IN]`, never invented |
 
 ### Outputs of a run
@@ -153,6 +181,10 @@ Where consent is required, the skill recommends a different first contact (a pho
 - **No screenshots** – Playwright/Chromium could not be installed or started; the reason is noted in `final/_overview.md` and the demos can be opened manually from `final/<slug>/demo/index.html`.
 - **A candidate has no e-mail** – it is listed in `emails/_no-email.md` with a phone number for a call instead.
 - **`[FILL IN]` in the outputs** – a sender detail was not provided; fill it in before sending.
+
+## Contributing
+
+New templates, legal notes for more countries and example runs in other languages are very welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

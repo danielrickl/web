@@ -16,7 +16,7 @@ For a freelance web designer: find potential clients with a weak website, write 
 - **Number of candidates**: default 5.
 - **Outreach language**: the language the e-mails and demos are written in. Default: the main business language of the location (Czech for the Czech Republic, German for Germany, …). Where a country has several (e.g. Switzerland, Belgium), use the language of the prospect's own website.
 - **Form of address**: default: the polite business form customary in that language (e.g. "vy" in Czech, "Sie" in German, "vous" in French; first name or "Hi" in English).
-- **Template folder**: look for a folder whose name contains `template`, `vzor` or `sablona` (up to depth 2). If you cannot find it or it has no `index.html`, ask for the path. Without a template, run only agents 1 and 2.
+- **Template folder**: first look in the current project for a folder whose name contains `template`, `vzor` or `sablona` (up to depth 2) with an `index.html`; this is the user's own design. If there is none, use the `template/` folder next to this `SKILL.md` (the bundled sample) and tell the user. If neither exists, ask for the path. Without a template, run only agents 1 and 2.
 - **Sender details** (brand, phone, e-mail, website, company registration number, postal address): from what the user provides or from their memory. Never invent missing details; leave `[FILL IN]` instead.
 
 Reports for the user (overview, notes, chat) are in the language the user writes in. Everything the prospect will see (e-mail, demo) is in the outreach language, in a factual and human tone, not salesy.
