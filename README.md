@@ -19,20 +19,20 @@ You stay in control: nothing is sent or published until you say so.
 
 A Claude skill that uses four sub-agents to find businesses with a poor website, write each of them a personalised e-mail and build a demo landing page based on your own template. It is meant for freelance web designers looking for clients.
 
-The prospects are Czech businesses (by default tradespeople and small businesses in the Ústí nad Labem Region), so the generated e-mails and demo pages are in Czech. This documentation and the skill definition are in English.
+🌍 **Works anywhere.** Pick any country, city and industry. The e-mails and demos are written natively in the local language (Czech, German, Spanish, English, …), with local formats and the polite form of address customary there, while the reports for you are in your own language.
 
 ## How it works
 
 | # | Agent | Input | Output |
 |---|-------|-------|--------|
 | 1 | **Researcher** – finds websites, evaluates them, fills in contact, website issues, a summary of the business and the link | industry, location, number of candidates | `prospects.json` |
-| 2 | **Copywriter** – writes a short, personal e-mail for every candidate with an e-mail address | `prospects.json`, sender details | `emails/<slug>.md` |
-| 3 | **Landing page builder** – copies the template and fills it with the candidate's verified data | `prospects.json`, template | `demos/<slug>/` |
+| 2 | **Copywriter** – writes a short, personal e-mail in the local language for every candidate with an e-mail address | `prospects.json`, sender details, language | `emails/<slug>.md` |
+| 3 | **Landing page builder** – copies the template, translates it and fills it with the candidate's verified data | `prospects.json`, template, language | `demos/<slug>/` |
 | 4 | **Assembler** – checks consistency, links the e-mail with the demo, takes screenshots and prepares final packages | everything above | `final/<slug>/`, `final/_overview.md` |
 
-Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes desktop (1440 px) and mobile (390 px) screenshots of every demo, and the main thread then shows them to you as previews together with a summary table.
+Before the agents start, the skill checks which e-mail marketing rules apply in the recipients' country and tells you what they mean for the run (see [Legal note](#legal-note)). Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes desktop (1440 px) and mobile (390 px) screenshots of every demo, and the main thread then shows them to you as previews together with a summary table.
 
-**Nothing is sent or published without your confirmation.** After a run, the skill only offers the next steps: deploying the demos to Vercel as previews, creating Gmail drafts (never sending), or logging the outreach in Google Sheets.
+**Nothing is sent or published without your confirmation.** After a run, the skill only offers the next steps: deploying the demos as previews (e.g. Vercel), creating e-mail drafts (e.g. Gmail; never sending), or logging the outreach in a spreadsheet.
 
 ## Repository structure
 
@@ -59,9 +59,9 @@ Agent 1 runs first. Agents 2 and 3 run in parallel. Agent 4 runs last, takes des
 
 Ask Claude for example:
 
-> Find me 5 clients with a poor website, carpenters in Teplice.
+> Find me 5 clients with a poor website: carpenters in Leeds, UK.
 
-or in Czech:
+> Find 3 plumbers in Lyon with an outdated website and write to them in French.
 
 > Najdi mi 5 klientů se špatným webem, truhláři Teplice.
 
@@ -71,17 +71,20 @@ The skill asks only for what is missing:
 
 | Input | Default |
 |-------|---------|
-| Industry and location | tradespeople and small businesses in Ústí nad Labem, Děčín, Teplice, Chomutov, Most, Litoměřice |
+| Industry | tradespeople and small local businesses |
+| Location | country + region or cities – no default, the skill asks |
 | Number of candidates | 5 |
-| Template folder | first folder containing `vzor`, `template` or `sablona` (depth ≤ 2) |
-| Sender details | brand, phone, e-mail, website, company ID (IČO), address – missing items are left as `[FILL IN]`, never invented |
+| Outreach language | main business language of the location (or of the prospect's website in multilingual countries) |
+| Form of address | the polite business form customary in that language |
+| Template folder | first folder containing `template`, `vzor` or `sablona` (depth ≤ 2) |
+| Sender details | brand, phone, e-mail, website, company registration number, postal address – missing items are left as `[FILL IN]`, never invented |
 
 ### Outputs of a run
 
 Each run creates `outreach/<YYYY-MM-DD>-<industry>-<city>/`:
 
 ```
-outreach/2026-11-23-carpenters-teplice/
+outreach/2026-11-23-carpenters-leeds/
 ├── prospects.json             # candidates (Agent 1)
 ├── emails/
 │   ├── <slug>.md              # e-mail drafts with {{DEMO_URL}} (Agent 2)
@@ -104,11 +107,13 @@ outreach/2026-11-23-carpenters-teplice/
 
 ```json
 {
-  "slug": "plumber-novak-teplice",
-  "company": "Instalatér Novák",
-  "city": "Teplice",
-  "url": "http://example.cz",
-  "contact": {"email": "", "phone": "", "contact_source": "website / Firmy.cz / business register"},
+  "slug": "smith-joinery-leeds",
+  "company": "Smith Joinery",
+  "city": "Leeds",
+  "country": "UK",
+  "url": "http://example.co.uk",
+  "language": "en",
+  "contact": {"email": "", "phone": "", "contact_source": "website / business directory / business register"},
   "what_they_do": "1-3 sentence summary verified from their website",
   "issues": ["no HTTPS", "not responsive", "no contact above the fold"],
   "score": 4,
@@ -129,7 +134,18 @@ outreach/2026-11-23-carpenters-teplice/
 
 ## Legal note
 
-The e-mails are commercial communications under Czech Act No. 480/2004 Coll. on certain information society services. Send them only individually to public business contacts, clearly identify the sender (brand, company ID, address) and provide an easy way to opt out. The data processing is also subject to the GDPR. This is not legal advice.
+The e-mails are commercial communications, and the rules depend on the **recipient's** country. Rough guide (the skill shows the relevant one at the start of every run):
+
+| Jurisdiction | Unsolicited e-mail to businesses |
+|--------------|----------------------------------|
+| USA (CAN-SPAM) | Allowed with an honest subject, a clear sender, a postal address and an opt-out. |
+| UK (PECR) | Allowed to companies with a clear sender and an opt-out; sole traders and partnerships need prior consent. |
+| France | Generally allowed to a professional address if relevant to the recipient's profession, with an opt-out. |
+| Germany (UWG § 7) | Prior express consent required, also for businesses. |
+| Czech Republic (Act 480/2004 Coll., § 7) | Prior consent required, also for businesses (except existing customers). |
+| Other EU countries | Check the national ePrivacy rules; many require consent. GDPR applies everywhere in the EU. |
+
+Where consent is required, the skill recommends a different first contact (a phone call or a letter, which have their own rules) and writes e-mails only if you confirm. Always identify yourself, keep each message individual and honour every opt-out. This table is a simplification, not legal advice; check with a lawyer for your situation.
 
 ## Troubleshooting
 

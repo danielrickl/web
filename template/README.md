@@ -26,7 +26,7 @@ Texts to fill in are marked as `{{PLACEHOLDERS}}`:
 
 The sample's fixed texts (navigation, process steps, FAQ) are in English; Agent 3 translates them into the language of the demo.
 
-The skill finds the template by looking for a folder whose name contains `vzor`, `template` or `sablona` (up to two levels deep). If you keep it elsewhere, give the skill the path when you start a run.
+The skill finds the template by looking for a folder whose name contains `template`, `vzor` or `sablona` (up to two levels deep). If you keep it elsewhere, give the skill the path when you start a run.
 
 ## What to put here
 
@@ -49,7 +49,7 @@ These are not required, but they make the generated demos more consistent:
 5. **Mobile first** – a `viewport` meta tag and a responsive layout; the demos are screenshotted at 1440 px and 390 px widths.
 6. **Working contact links** – `tel:` and `mailto:` links and a form that needs no back end (e.g. `mailto:`), so the demo works as a single static folder.
 7. **Space for the demo label** – a footer or banner where Agent 3 adds "this is a demo, not the official website of <company>". Agent 3 also adds `<meta name="robots" content="noindex,nofollow">`.
-8. **Language** – the demos are in Czech for Czech businesses; write the template in Czech or keep its texts easy to replace.
+8. **Language** – the demos are written in each prospect's language; Agent 3 translates the template's fixed texts, so write the template in any language and keep its texts easy to replace.
 
 ## Checklist before a run
 
